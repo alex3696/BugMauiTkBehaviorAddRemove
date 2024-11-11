@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:BugMauiTkBehaviorAddRemove"
+             x:Class="BugMauiTkBehaviorAddRemove.MainPage"
+             x:DataType="vm:CollectionVM"
+             >
+
+    <ScrollView>
+        <VerticalStackLayout Grid.Column="1" Grid.Row="1">
+            <Button Text="Refresh" Command="{Binding CmdRefresh}" />
+            <Label Text="{Binding Pressed}" HorizontalTextAlignment="Center" />
+            <CollectionView  ItemsSource="{Binding Items}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:ItemVM">
+
+                        <Border BackgroundColor="DarkGray" HeightRequest="80" WidthRequest="80">
+
+                            <Border.Behaviors>
+                                <toolkit:TouchBehavior 
+                                    Command="{Binding CmdPress}"/>
+                            </Border.Behaviors>
+
+                            <Label Text="{Binding Data}" 
+                                    FontSize="25"
+                                    HorizontalTextAlignment="Center" 
+                                    VerticalTextAlignment="Center" />
+                        </Border>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
